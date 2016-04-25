@@ -1,7 +1,7 @@
 {
   "name": "react-redux-starter-kit",
   "version": "2.0.0-alpha.4",
-  "description": "Your new project",
+  "description": "POC-Sockets",
   "main": "index.js",
   "engines": {
     "node": ">=4.2.0",
@@ -124,11 +124,14 @@
     "node-sass": "^3.3.3",
     "postcss-loader": "^0.8.0",
     "react": "^15.0.0",
+    "react-bootstrap": "^0.29.0",
     "react-dom": "^15.0.0",
     "react-redux": "^4.0.0",
     "react-router": "^2.0.0",
     "react-router-redux": "^4.0.0",
+    "react-websocket": "^1.0.0",
     "redux": "^3.0.0",
+    "redux-form": "^5.1.1",
     "redux-thunk": "^2.0.0",
     "rimraf": "^2.5.1",
     "sass-loader": "^3.0.0",
