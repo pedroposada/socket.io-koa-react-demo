@@ -1,3 +1,6 @@
+/* global config */
+require('file?name=config.js!./config.js')
+require('file?name=client.html!./client.html')
 /* @flow */
 import React from 'react'
 import ReactDOM from 'react-dom'
@@ -10,7 +13,6 @@ import { Provider } from 'react-redux'
 import ClientWidget from './containers/ClientWidget'
 import configureStore from './redux/configureStore'
 
-
 // Configure history for react-router
 // const browserHistory = useRouterHistory(createBrowserHistory)({
 //   basename: __BASENAME__
@@ -21,7 +23,6 @@ import configureStore from './redux/configureStore'
 // so we need to provide a custom `selectLocationState` to inform
 // react-router-redux of its location.
 const initialState = window.__INITIAL_STATE__
-// const store = configureStore(initialState, browserHistory)
 const store = configureStore(initialState)
 // const history = syncHistoryWithStore(browserHistory, store, {
 //   selectLocationState: (state) => state.router
@@ -36,7 +37,6 @@ const store = configureStore(initialState)
 // React application to the DOM!
 ReactDOM.render(
   // <Root history={history} routes={routes} store={store} />,
-  // <Root routes={routes} store={store} />,
   <Provider store={store}><ClientWidget /></Provider>,
   document.getElementById('root')
 )
