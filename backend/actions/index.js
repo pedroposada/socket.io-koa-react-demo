@@ -1,4 +1,4 @@
-import Server from '../index'
+import Server, { activeClients } from '../index'
 
 /**
  * ------------------------ ACTIONS -----------
@@ -14,8 +14,20 @@ export const socketMessage = () => {
     let result
 
     const { msg } = ctx.request.query
-    Server.io.broadcast('data from server', msg)
+    await Server.io.broadcast('data from server', msg)
+  }
+}
 
-    return ctx.body = ctx
+/**
+ * Send feedback
+ * @return {Function} next  [generator function]
+ */
+export const adminUI = () => {
+  return async (ctx, next) => {
+    await next()
+    let result
+
+    // pass props to views/AdminUI.jsx
+    ctx.render('AdminUI', {})
   }
 }

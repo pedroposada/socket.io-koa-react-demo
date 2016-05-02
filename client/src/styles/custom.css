@@ -1,0 +1,27 @@
+.example-appear {
+  opacity: 0.01;
+}
+.example-appear.example-appear-active {
+  opacity: 1;
+  transition: opacity 5s ease-in;
+}
+.example-enter {
+  opacity: 0.01;
+  transition: opacity .5s ease-in;
+}
+.example-enter.example-enter-active {
+  opacity: 1;
+}
+
+.someclass {
+	width: 200px;
+	height: 200px;
+	position: fixed;
+	bottom: 0px;
+	right: 0px;
+	background-color: #FFF;
+  transition:  right 2s ease-in;
+}
+.someclass.someclass-appear.someclass-appear-active {
+  right: -500px;
+}

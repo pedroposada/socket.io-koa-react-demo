@@ -11,4 +11,5 @@ const PREFIX = `/api`
 
 export default (router) => {
   router.get(`${PREFIX}/socket-message`, actions.socketMessage())
+  // router.get(`/admin`, actions.adminUI())
 }

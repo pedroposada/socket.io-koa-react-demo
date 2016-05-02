@@ -8,6 +8,7 @@ import IO from 'koa-socket'
 // import { default as koajwt } from 'koa-jwt'
 import convert from 'koa-convert'
 import routes from './routes'
+import react from 'koa-react-view'
 
 // export const JWT_SECRET = 'my secret'
 // export const JWT_TTL = 60*60*5 // time in seconds
@@ -94,20 +95,47 @@ app.use(convert(bodyParser()))
  */
 io.attach( app )
 
-io.use( async ( ctx, next ) => {
+io.use( async (ctx, next ) => {
   const start = new Date()
   await next()
   console.log( `[${dateformat(start, 'isoDateTime')}] ${ctx.event} - ${ new Date() - start }ms` )
 })
 
-io.on( 'join', ( ctx, data ) => {
-  console.log( 'join event fired', data )
+const clients = new Map()
+
+io.on('client join', (ctx, data) => {
+  clients.set(data.id, data)
+  console.log('client join event fired', [...clients.values()])
+  io.broadcast('active clients', [...clients.values()])
+
+  // push message if there are 2 or more active clients
+  if (clients.size >= 2) {
+    io.broadcast('data from server', `${clients.size} active clients`)
+  }
 })
 
-io.on( 'data from client', ( ctx, data ) => {
+io.on('admin join', (ctx, data) => {
+  console.log( 'admin join event fired', [...clients.values()])
+  io.broadcast('active clients', [...clients.values()])
+})
+
+io.on('data from client', (ctx, data) => {
   console.log( 'data from client', data )
 })
 
+io.on('data from admin', (ctx, message) => {
+  io.broadcast('data from server', message)
+})
+
+io.on('client disconnect', (ctx, data) => {
+  clients.delete(data.id)
+  io.broadcast('active clients', [...clients.values()])
+
+  // push message if there are 2 or more active clients
+  if (clients.size < 2) {
+    io.broadcast('data from server', '')
+  }
+})
 /**
  * REST routes
  * from routes/index.js
@@ -117,6 +145,17 @@ routes(router)
 app
   .use(router.routes())
   .use(router.allowedMethods())
+
+/**
+ * render files with react
+ * this.render(viename, props)
+ */
+const viewspath = `${__dirname}/views`
+react(app, {
+  views: viewspath,
+  writeResp: true,
+  internals: true
+})
 
 /**
  * Export app with middleware
