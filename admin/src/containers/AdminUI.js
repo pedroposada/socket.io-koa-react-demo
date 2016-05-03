@@ -1,3 +1,4 @@
+import config from 'config'
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -15,7 +16,7 @@ import {
   Badge
 } from 'react-bootstrap'
 
-export const socket = io('http://localhost:5000');
+export const socket = io(config.SOCKETSURL || 'http://localhost:5000')
 
 type Props = {
   Sockets: Object,

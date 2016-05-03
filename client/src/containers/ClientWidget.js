@@ -1,6 +1,5 @@
-/* globals socketClientWidgetConfig */
-// import 'bootstrap/dist/css/bootstrap.css'
-// import 'bootstrap/dist/css/bootstrap-theme.css'
+/* global socketClientWidgetConfig */
+import config from 'config'
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -9,7 +8,7 @@ import { actions as socketActions } from 'redux/modules/Sockets'
 import ReactTransitionGroup from 'react-addons-css-transition-group'
 import { Well } from 'react-bootstrap'
 
-const socket = io('http://localhost:5000');
+const socket = io(config.SOCKETSURL || 'http://localhost:5000')
 
 type Props = {
   handleClick: Function,
