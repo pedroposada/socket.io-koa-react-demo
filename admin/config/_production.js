@@ -4,9 +4,9 @@ export default () => ({
   compiler_hash_type       : 'chunkhash',
   compiler_devtool         : null,
   compiler_stats           : {
-    chunks : true,
-    chunkModules : true,
+    chunks : false,
+    chunkModules : false,
     colors : true
   },
-  compiler_public_path: '/'
+  compiler_public_path: '/admin/dist/'
 })

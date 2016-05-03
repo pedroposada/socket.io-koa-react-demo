@@ -4,8 +4,18 @@ import { bindActionCreators } from 'redux'
 import io from 'socket.io-client'
 import { actions as socketsActions } from 'redux/modules/Sockets'
 import AdminUIForm from 'forms/AdminUIForm'
+import AdminUIForm2Form from 'forms/AdminUIForm2Form'
+import {
+  Button,
+  FormGroup,
+  FormControl,
+  HelpBlock,
+  Row,
+  Col,
+  Badge
+} from 'react-bootstrap'
 
-const socket = io('http://localhost:5000');
+export const socket = io('http://localhost:5000');
 
 type Props = {
   Sockets: Object,
@@ -28,6 +38,7 @@ export class AdminUI extends React.Component {
       <div>
         <h1>Admin UI</h1>
         <AdminUIForm {...this.props} />
+        <AdminUIForm2Form {...this.props} />
       </div>
     )
   }
@@ -42,7 +53,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onClients: (clients) => dispatch(socketsActions.clients(clients)),
-    onSendMessage: (message) => socket.emit('data from admin', message)
+    onSendMessage: (message) => socket.emit('data from admin', message),
+    onXnumbermsg: (msg) => dispatch(socketsActions.xnumbermsg(msg))
   }
 }
 

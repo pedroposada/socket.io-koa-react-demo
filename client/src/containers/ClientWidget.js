@@ -1,6 +1,6 @@
 /* globals socketClientWidgetConfig */
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap/dist/css/bootstrap-theme.css'
+// import 'bootstrap/dist/css/bootstrap.css'
+// import 'bootstrap/dist/css/bootstrap-theme.css'
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -36,11 +36,26 @@ export class ClientWidget extends React.Component {
   render() {
     const { handleClick, Sockets } = this.props
     return (
-      <div>
-        <h1>Client Widget Demo</h1>
+      <div
+        style={{
+          padding: '10px',
+          backgroundImage: `url('${require('file!static/300x250.gif')}')`,
+          backgroundRepeat: 'no-repeat',
+          height: '250px',
+          cursor: 'pointer',
+          color: '#000'
+        }}
+        >
+        <div>Demo Widget</div>
         {/* <button onClick={handleClick}>Emit socket event</button> */}
-        <h2>{Sockets.fromServer}</h2>
-        <ReactTransitionGroup
+        <div
+          style={{
+            padding: '10px',
+            color: '#000',
+            fontSize: '30px'
+          }}
+          >{Sockets.fromServer}</div>
+        {/* <ReactTransitionGroup
           // component={FirstChild}
           transitionName='someclass'
           // transitionEnter={true}
@@ -49,8 +64,8 @@ export class ClientWidget extends React.Component {
           transitionEnterTimeout={2000}
           transitionLeaveTimeout={2000}
           >
-          {/* <Well className='someclass' key={1}><h1>Do you need help?</h1></Well> */}
-        </ReactTransitionGroup>
+          <Well className='someclass' key={1}><h1>Do you need help?</h1></Well>
+        </ReactTransitionGroup> */}
       </div>
     )
   }
