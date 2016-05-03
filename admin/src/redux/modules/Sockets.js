@@ -13,7 +13,7 @@ export const actions = {
 
 // Reducer
 export const initialState = {
-  clients: new Map(),
+  clients: [],
   xnumbermsg: ''
 }
 export default function (state = initialState, action) {
