@@ -1,4 +1,3 @@
-/* global socketClientWidgetConfig */
 import config from 'config'
 import React from 'react'
 import { connect } from 'react-redux'
@@ -19,15 +18,26 @@ export class ClientWidget extends React.Component {
   props: Props;
 
   componentDidMount() {
+    // client id
+    let socketClientWidgetId = localStorage.getItem('socketClientWidgetId')
+    if (!socketClientWidgetId) {
+      socketClientWidgetId = Math.random()
+      localStorage.setItem('socketClientWidgetId', socketClientWidgetId)
+      const tabs = localStorage.getItem('tabs')
+      localStorage.setItem('tabs', +tabs + 1)
+    }
     // register listener
     socket.on('data from server', (data) => {
       this.props.handleDataFromServer(data)
     })
     // call server
-    socket.emit('client join', { msg: 'client joined', id: socketClientWidgetConfig.id })
+    socket.emit('client join', { msg: 'client joined', id: socketClientWidgetId })
     // resgister window listener
     window.addEventListener('beforeunload', function cb(event) {
-      socket.emit('client disconnect', { msg: 'client disconnected', id: socketClientWidgetConfig.id })
+      if ((+localStorage.getItem('tabs') - 1) === 0) {
+        localStorage.removeItem('tabs')
+        socket.emit('client disconnect', { msg: 'client disconnected', id: socketClientWidgetId })
+      }
       event.target.removeEventListener('beforeunload', cb)
     });
   }

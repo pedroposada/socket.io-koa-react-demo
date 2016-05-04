@@ -114,7 +114,7 @@ let xnumber, xnumbermsg
 io.on('client join', (ctx, data) => {
   clients.set(data.id, data)
   io.broadcast('active clients', [...clients.values()])
-  if (clients.size >= xnumber) {
+  if (clients.size === xnumber) {
     io.broadcast('data from server', xnumbermsg)
   } else {
     io.broadcast('data from server', '')
@@ -133,7 +133,7 @@ io.on('data from admin', (ctx, message) => {
 io.on('settings from admin', (ctx, settings) => {
   xnumbermsg = settings.xnumbermsg
   xnumber = Number(settings.xnumber)
-  if (clients.size >= xnumber) {
+  if (clients.size === xnumber) {
     io.broadcast('data from server', xnumbermsg)
   } else {
     io.broadcast('data from server', '')

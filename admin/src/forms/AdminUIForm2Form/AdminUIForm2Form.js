@@ -10,7 +10,8 @@ import {
   Row,
   Col,
   Badge,
-  Panel
+  Panel,
+  InputGroup
 } from 'react-bootstrap'
 
 export const fields = ['xnumber', 'xnumbermsg']
@@ -56,25 +57,31 @@ export class AdminUIForm2 extends React.Component {
           <Row>
             <Col lg={5}>
               <FormGroup>
-                <FormControl
-                  componentClass="select"
-                  {...xnumber}
-                  >
-                  <option value={1}>If 1 client is connnected then</option>
-                  <option value={2}>If 2 clients are connected then</option>
-                  >
-                </FormControl>
+                <InputGroup>
+                  <InputGroup.Addon>If</InputGroup.Addon>
+                  <FormControl
+                    componentClass="select"
+                    {...xnumber}
+                    >
+                    <option value={2}>2 clients are connected</option>
+                    <option value={3}>3 clients are connnected</option>
+                    >
+                  </FormControl>
+                </InputGroup>
               </FormGroup>
             </Col>
             <Col lg={5}>
               <FormGroup
                 validationState={xnumbermsg.error && xnumbermsg.touched ? 'error' : 'success'}
                 >
-                <FormControl
-                  type="text"
-                  placeholder="display this message"
-                  {...xnumbermsg}
-                  />
+                <InputGroup>
+                  <InputGroup.Addon>then</InputGroup.Addon>
+                  <FormControl
+                    type="text"
+                    placeholder="display this message"
+                    {...xnumbermsg}
+                    />
+                </InputGroup>
                 <HelpBlock>{xnumbermsg.error && xnumbermsg.touched && xnumbermsg.error}</HelpBlock>
               </FormGroup>
             </Col>
@@ -101,7 +108,7 @@ export default reduxForm({
   (state) => {
     return {
       initialValues: {
-        xnumber: 1,
+        xnumber: 2,
         xnumbermsg: state.Sockets.xnumbermsg
       }
     }
