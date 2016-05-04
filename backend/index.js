@@ -116,7 +116,7 @@ io.on('client join', (ctx, data) => {
   io.broadcast('active clients', [...clients.values()])
 
   // push message if there are 2 or more active clients
-  if (clients.size === xnumber) {
+  if (clients.size >== xnumber) {
     io.broadcast('data from server', xnumbermsg)
   }
 })
@@ -133,7 +133,7 @@ io.on('data from admin', (ctx, message) => {
 io.on('settings from admin', (ctx, settings) => {
   xnumbermsg = settings.xnumbermsg
   xnumber = Number(settings.xnumber)
-  if (clients.size === xnumber) {
+  if (clients.size >== xnumber) {
     io.broadcast('data from server', xnumbermsg)
   } else {
     io.broadcast('data from server', '')
