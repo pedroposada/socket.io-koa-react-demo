@@ -169,13 +169,9 @@ react(app, {
 })
 
 /**
- * Export app with middleware
- * usefull for unit testing and nested apps
+ * export websocket with middleware
  */
-export default {
-  app,
-  io
-}
+export const websocket = io
 
 /**
  * Start server
@@ -186,3 +182,8 @@ app.listen(port, (err) => {
   // feedback to console
   console.log(`Listening at http://localhost:${port}`)
 })
+
+/**
+ * Export app with middleware
+ */
+export default app
