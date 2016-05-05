@@ -38,3 +38,9 @@ Run this command inside the backend folder
 ```
 npm run backend:prod
 ```
+
+##### To view Admin UI go to htt://localhost:5000/admin/dist
+type in a message in the form and hit send
+
+##### To view Client go to http://localhost:5000/client/dist
+message should appear in the box instantly
