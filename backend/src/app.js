@@ -1,3 +1,4 @@
+// import 'babel-polyfill'
 import Koa from 'koa'
 import Router from 'koa-router'
 import bodyParser from 'koa-bodyparser'
@@ -92,9 +93,9 @@ app.use(convert(bodyParser()))
 // ]})))
 
 /**
- * server static files
+ * serve static files from "static" folder
  */
-app.use(convert(serve('static')))
+app.use(convert(serve(`${__dirname}/static`)))
 
 
 /**
@@ -151,22 +152,22 @@ io.on('client disconnect', (ctx, data) => {
  * REST routes
  * from routes/index.js
  */
-const router = new Router()
-routes(router)
-app
-  .use(router.routes())
-  .use(router.allowedMethods())
+// const router = new Router()
+// routes(router)
+// app
+//   .use(router.routes())
+//   .use(router.allowedMethods())
 
 /**
  * render files with react
  * this.render(viename, props)
  */
-const viewspath = `${__dirname}/views`
-react(app, {
-  views: viewspath,
-  writeResp: true,
-  internals: true
-})
+// const viewspath = `${__dirname}/views`
+// react(app, {
+//   views: viewspath,
+//   writeResp: true,
+//   internals: true
+// })
 
 /**
  * export websocket with middleware
