@@ -1,7 +1,7 @@
 # Demo on socket.io with koa and react
 
-Clientside and Serverside application to demonstrate how to plug sockets into koa and react. 
-Its comprised of an Admin UI page to send messages to a Client page.
+Client-side and Server-side application to demonstrate how to plug sockets into koa and react. 
+Its comprised of an Admin UI page to send messages to a Client page, and a koa server that relays the messages via websockets.
 Admin UI page will also display the number of clients that are currently connected to the server. 
 Once you have installed modules and compiled Admin UI and Client, you can start the server.  
 
