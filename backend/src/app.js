@@ -1,19 +1,12 @@
-// import 'babel-polyfill'
 import Koa from 'koa'
 import Router from 'koa-router'
 import bodyParser from 'koa-bodyparser'
 import cors from 'koa-cors'
 import dateformat from 'dateformat'
 import IO from 'koa-socket'
-// import mongoose from 'mongoose'
-// import { default as koajwt } from 'koa-jwt'
 import convert from 'koa-convert'
-import routes from './routes'
 import react from 'koa-react-view'
 import serve from 'koa-static'
-
-// export const JWT_SECRET = 'my secret'
-// export const JWT_TTL = 60*60*5 // time in seconds
 
 /**
   * Error handling - function to display stack trace and line numbers in terminal
@@ -76,23 +69,6 @@ app.use(convert(cors({
 app.use(convert(bodyParser()))
 
 /**
- * connect db
- */
-// mongoose.connect('127.0.0.1:27017/todosdemo')
-
-/**
- * JWT authentication control
- * all paths protected by default
- */
-// app.use(convert(koajwt({ secret: JWT_SECRET }).unless({ path: [
-//   // add unprotected paths here
-//   // /regex for path/, ...
-
-//   /^\/api\/login/,
-//   /^\/favicon.ico/,
-// ]})))
-
-/**
  * serve static files from "static" folder
  */
 app.use(convert(serve(`${__dirname}/static`)))
@@ -148,26 +124,6 @@ io.on('client disconnect', (ctx, data) => {
     io.broadcast('data from server', '')
   }
 })
-/**
- * REST routes
- * from routes/index.js
- */
-// const router = new Router()
-// routes(router)
-// app
-//   .use(router.routes())
-//   .use(router.allowedMethods())
-
-/**
- * render files with react
- * this.render(viename, props)
- */
-// const viewspath = `${__dirname}/views`
-// react(app, {
-//   views: viewspath,
-//   writeResp: true,
-//   internals: true
-// })
 
 /**
  * export websocket with middleware
