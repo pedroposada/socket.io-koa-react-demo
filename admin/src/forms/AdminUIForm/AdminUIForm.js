@@ -77,8 +77,8 @@ export class AdminUIForm extends React.Component {
                   value={specialty.value || ''}
                   >
                   <option value=''>Select specialty</option>
-                  <option value='Cardiology'>Cardiology</option>
-                  <option value='Oncology'>Oncology</option>
+                  <option value='Specialty1'>Specialty1</option>
+                  <option value='Specialty2'>Specialty2</option>
                 </FormControl>
                 <HelpBlock>{specialty.error && specialty.touched && specialty.error}</HelpBlock>
               </FormGroup>
