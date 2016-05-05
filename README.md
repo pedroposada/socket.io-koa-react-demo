@@ -2,7 +2,8 @@
 
 Clientside and Serverside application to demonstrate how to plug sockets into koa and react. 
 Its comprised of an Admin UI page to send messages to a Client page.
-Admin UI page will also display the number of clients that are currently connected to the server.
+Admin UI page will also display the number of clients that are currently connected to the server. 
+Once you have installed modules and compiled Admin UI and Client, you can start the server.  
 
 ## Components
 
@@ -15,26 +16,28 @@ User interface that displays a message sent from Admin UI
 
 ## Commands
 
+Run ``npm install`` separately inside the three top level folders, admin, backend and client, to download required modules.
+
 Compile Admin UI.
-Run this command inside the admin folder
+Run this command inside the ``/admin`` folder
 ```
 BASENAME='/admin/dist' npm run deploy:prod
 ```
 
 Compile Client.
-Run this command inside client folder
+Run this command inside ``/client`` folder
 ```
 npm run deploy:prod
 ```
 
 Start server in development mode.
-Run this command inside the backend folder
+Run this command inside the ``/backend`` folder
 ```
 npm run backend:dev
 ```
 
-Start server in production mode.
-Run this command inside the backend folder
+Optionally start server in production mode.
+Run this command inside the ``/backend`` folder
 ```
 npm run backend:prod
 ```
