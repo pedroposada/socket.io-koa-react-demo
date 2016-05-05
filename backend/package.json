@@ -8,9 +8,8 @@
     "npm": "^3.0.0"
   },
   "scripts": {
-    "backend": "better-npm-run backend",
-    "backend:prod": "node ./src/index.js",
-    "build": "babel ./src -d ./dist"
+    "backend:dev": "better-npm-run backend",
+    "backend:prod": "node ./src/index.js"
   },
   "betterScripts": {
     "backend": {
